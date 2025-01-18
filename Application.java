@@ -3,14 +3,17 @@ package main;
 
 public class Application {
 	public static boolean map[]=new boolean[26];
+	public static String [] newmap = {".","abc","def","ghi","jkl","mno","pqrs","tu","vw","yz"};
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String myString="aabccbadd";
+		String myString="23";
 		String newString="";
-		//Stringrev(myString,newString,myString.length()-1);
 		
-		RemoveDuplicates(myString,newString,0);
+		//Stringrev(myString,newString,myString.length()-1);
+		//RemoveDuplicates(myString,newString,0);
+		//subsequences(myString,newString,0);
+		keypadcombination(myString,newString,0);
 		
 
 	}
@@ -29,6 +32,7 @@ public class Application {
 
 	}
 	
+	// Remove Duplicate From String
 	public static void RemoveDuplicates (String myString, String newString,int indx){
 		
 		if (indx==myString.length()) {
@@ -50,6 +54,38 @@ public class Application {
 		}
 		
 		
+		
+	}
+	
+	// Code to print Subsequences from String 
+	public static void subsequences (String myString, String newString, int indx) {
+		if (indx==myString.length()) {
+			System.out.println(newString);
+			return;
+		}
+		
+		char currChar = myString.charAt(indx);
+		
+		subsequences(myString,newString+currChar,indx+1);
+		subsequences(myString,newString,indx+1);
+		
+		
+		
+	}
+	
+	// kEYPAD phone combinations 
+	public static void keypadcombination (String myString ,String newString,int indx) {
+		if (indx== myString.length()) {
+			System.out.println(newString);
+			return;
+		}
+		char currChar = myString.charAt(indx);
+		String mapping= newmap[currChar -'0'];
+		
+		for(int i=0;i<mapping.length();i++) {
+			keypadcombination(myString,newString+mapping.charAt(i),indx+1);
+			
+		}
 		
 	}
 }
