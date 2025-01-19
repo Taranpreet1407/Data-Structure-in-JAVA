@@ -7,13 +7,18 @@ public class Application {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String myString="23";
+		String myString="abc";
 		String newString="";
+		int n=3;
+		int m=3;
 		
 		//Stringrev(myString,newString,myString.length()-1);
 		//RemoveDuplicates(myString,newString,0);
 		//subsequences(myString,newString,0);
-		keypadcombination(myString,newString,0);
+		//keypadcombination(myString,newString,0);
+		//permutation(myString,"");
+		int totalpaths = countpath(0,0,n,m);
+		System.out.println(totalpaths);
 		
 
 	}
@@ -86,6 +91,36 @@ public class Application {
 			keypadcombination(myString,newString+mapping.charAt(i),indx+1);
 			
 		}
+		
+	}
+	
+	// Combinations of possible outcomes
+	public static void permutation(String myString,String permutation) {
+		if(myString.length()==0) {
+			System.out.println(permutation);
+			return;
+		}
+		for (int i=0; i<myString.length();i++) {
+			char currChar = myString.charAt(i);
+			String newStr = myString.substring(0,i) + myString.substring(i+1);
+			permutation(newStr,permutation+currChar);
+		}
+		
+	}
+	
+	//Maize path problem to find the total possible paths 
+	public static int countpath (int i,int j,int m,int n) {
+		if(i==m || j==n) {
+			return 0 ;
+		}
+		
+		if(i==m-1 && j==n-1) {
+			return 1;
+		}
+		int rightmove = countpath(i+1,j,m,n);
+		int downmove = countpath(i,j+1,m,n);
+		
+		return rightmove+downmove;
 		
 	}
 }
