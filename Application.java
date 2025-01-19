@@ -7,7 +7,7 @@ public class Application {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String myString="abc";
+		String myString="ABC";
 		String newString="";
 		int n=3;
 		int m=3;
@@ -17,8 +17,9 @@ public class Application {
 		//subsequences(myString,newString,0);
 		//keypadcombination(myString,newString,0);
 		//permutation(myString,"");
-		int totalpaths = countpath(0,0,n,m);
-		System.out.println(totalpaths);
+		//int totalpaths = countpath(0,0,n,m);
+		//System.out.println(totalpaths);
+		backTracking(myString," ",0);
 		
 
 	}
@@ -122,5 +123,23 @@ public class Application {
 		
 		return rightmove+downmove;
 		
+	}
+	
+	
+	
+	//print all possible combination from String
+	public static void backTracking(String currStr, String perm, int indx) {
+	    if (currStr.length() == 0) {
+	        System.out.println(perm);
+	        return;
+	    }
+	    // For loop initialization
+	    for (int i = 0; i < currStr.length(); i++) {
+	        char currchar = currStr.charAt(i);
+	        // Properly split the string into two parts: before and after `i`
+	        String newStr = currStr.substring(0, i) + currStr.substring(i + 1);
+	        
+	        backTracking(newStr, perm + currchar, indx + 1);
+	    }
 	}
 }
